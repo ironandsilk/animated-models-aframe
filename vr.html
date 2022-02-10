@@ -2,98 +2,130 @@
 <html lang="en">
   <head>
     <title>WebAR with VR</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <!-- IMPORT AFRAME -->
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    
-    <!-- IMNPORT DON MCCURDY'S A-FRAME EXTRA-->
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
-    
-    
-  </head>
-    <a-assets>
-    
-       <a-asset-item id="humanoid" response-type="arraybuffer"
-                      src="https://cdn.glitch.com/513327e2-3918-4fc4-946c-71d13cd4405a%2Fzombie.glb?v=1570841458461"></a-asset-item>
-      <a-asset-item id="jumpingjacks" response-type="arraybuffer"
-                      src="https://cdn.glitch.com/7c3bb602-dc8b-40d4-b700-fbb68b9861dc%2FJumping%20Jacks.glb?v=1592689815604"></a-asset-item>
-       <a-asset-item id="hook" response-type="arraybuffer"
-                      src="https://cdn.glitch.com/7c3bb602-dc8b-40d4-b700-fbb68b9861dc%2Fhook-punch.glb?v=1592690551790"></a-asset-item>
-       <a-asset-item id="kick" response-type="arraybuffer"
-                      src="https://cdn.glitch.com/7c3bb602-dc8b-40d4-b700-fbb68b9861dc%2Froundhouse.glb?v=1592692268797"></a-asset-item>
-    </a-assets>
-    <img id="uiimage" src="https://cdn.glitch.com/7c3bb602-dc8b-40d4-b700-fbb68b9861dc%2Fboxing%20timer.png?v=1592691124150">
 
-    <a-entity camera look-controls position="0 1.6 0">
-          <a-entity cursor
-                  position="0 0 -1"
-                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                  material="color: black; shader: flat"></a-entity>
+    <!-- IMPORT DON MCCURDY'S A-FRAME EXTRA-->
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+  </head>
+  <a-assets>
+    <a-asset-item
+      id="humanoid"
+      response-type="arraybuffer"
+      src="https://cdn.glitch.com/513327e2-3918-4fc4-946c-71d13cd4405a%2Fzombie.glb?v=1570841458461"
+    ></a-asset-item>
+    <a-asset-item
+      id="jumpingjacks"
+      response-type="arraybuffer"
+      src="https://cdn.glitch.com/7c3bb602-dc8b-40d4-b700-fbb68b9861dc%2FJumping%20Jacks.glb?v=1592689815604"
+    ></a-asset-item>
+    <a-asset-item
+      id="hook"
+      response-type="arraybuffer"
+      src="https://cdn.glitch.com/7c3bb602-dc8b-40d4-b700-fbb68b9861dc%2Fhook-punch.glb?v=1592690551790"
+    ></a-asset-item>
+    <a-asset-item
+      id="kick"
+      response-type="arraybuffer"
+      src="https://cdn.glitch.com/7c3bb602-dc8b-40d4-b700-fbb68b9861dc%2Froundhouse.glb?v=1592692268797"
+    ></a-asset-item>
+  </a-assets>
+  <img
+    id="uiimage"
+    src="https://cdn.glitch.com/7c3bb602-dc8b-40d4-b700-fbb68b9861dc%2Fboxing%20timer.png?v=1592691124150"
+  />
+
+  <a-entity camera look-controls position="0 1.6 0">
+    <a-entity
+      cursor
+      position="0 0 -1"
+      geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+      material="color: black; shader: flat"
+    ></a-entity>
+  </a-entity>
+
+  <a-scene background="color: #FAFAFA" vr-mode-ui="enabled: true">
+    <a-entity text="value: Correct;"></a-entity>
+
+    <a-entity
+      id="welcome line 2"
+      text="value: Select a Workout; width: 1.5; wrapCount: 20"
+      position="0.10519 1.8 -2.5"
+      animation="property: components.text.material.uniforms.color.value; type: color; to: red; dir: alternate; loop: 8"
+    >
     </a-entity>
 
-  
-    <a-scene background="color: #FAFAFA" vr-mode-ui="enabled: true">
-      
-          <a-entity text="value: Correct;"></a-entity>
-      
-            
-        <a-entity id="welcome line 2" text="value: Select a Workout; width: 1.5; wrapCount: 20"
-                position="0.10519 1.8 -2.5"
-                animation="property: components.text.material.uniforms.color.value; type: color; to: red; dir: alternate; loop: 8"> </a-entity>
-      
-        
-          <a-box position="0 -0.05 -2" scale="1 0.1 0.5" material="color: yellow;"></a-box>
-         
-          <a-entity
-              gltf-model="#humanoid"
-              position="1 0 -3"
-              rotation="0 90 0"
-                    animation-mixer="clip:mixamo.com; timeScale:1; loop:pingpong; crossFadeDuration:0"> 
-          </a-entity>
+    <a-box
+      position="0 -0.05 -2"
+      scale="1 0.1 0.5"
+      material="color: yellow;"
+    ></a-box>
 
+    <a-entity
+      gltf-model="#humanoid"
+      position="1 0 -3"
+      rotation="0 90 0"
+      animation-mixer="clip:mixamo.com; timeScale:1; loop:pingpong; crossFadeDuration:0"
+    >
+    </a-entity>
 
-           <a-entity id="jumping-instructions"
-              gltf-model="#jumpingjacks"
-              position="0 0 -2"
-              rotation="0 00"
-              scale="0.01 0.01 0.01"
-                    animation-mixer="clip:mixamo.com; timeScale:1; loop:pingpong; crossFadeDuration:0"> 
-          </a-entity>
-      
-          <a-circle position="-2 -0.05 -2" 
-                      rotation="-90 0 0"
-                      radius="0.4" material="color: black;"></a-circle>
-      
-           <a-entity id="boxing-instructions"
-              gltf-model="#hook"
-              position="-2 0 -2"
-              rotation="0 0 0"
-              scale="0.01 0.01 0.01"
-                    animation-mixer="clip:mixamo.com; timeScale:1; loop:pingpong; crossFadeDuration:0"> 
-           </a-entity>
-              
-            <a-entity id="roundhouse"
-              gltf-model="#kick"
-              position="2 0 -2"
-              rotation="0 0 0"
-              scale="0.01 0.01 0.01"
-                    animation-mixer="clip:mixamo.com; timeScale:1; loop:pingpong; crossFadeDuration:0"> 
-           </a-entity>
-                 
-           <a-circle position="2 -0.05 -2" 
-                      rotation="-90 0 0"
-                      radius="0.4" material="color: black;"></a-circle>
-      
-            <a-image id="image-1" 
-                     position="0 0 0" 
-                     rotation="0 0 0" scale="1 1 1" geometry="width: 4; height: 3;"
-        material="color: #ffffff; opacity: 1; shader: flat; side: double; src: #uiimage; metalness: 0.5; roughness: 1; repeat: 1 1;"
-        shadow="cast: true; receive: true;" visible="true"></a-image>       
-      
-             
-          
-    </a-scene>
+    <a-entity
+      id="jumping-instructions"
+      gltf-model="#jumpingjacks"
+      position="0 0 -2"
+      rotation="0 00"
+      scale="0.01 0.01 0.01"
+      animation-mixer="clip:mixamo.com; timeScale:1; loop:pingpong; crossFadeDuration:0"
+    >
+    </a-entity>
+
+    <a-circle
+      position="-2 -0.05 -2"
+      rotation="-90 0 0"
+      radius="0.4"
+      material="color: black;"
+    ></a-circle>
+
+    <a-entity
+      id="boxing-instructions"
+      gltf-model="#hook"
+      position="-2 0 -2"
+      rotation="0 0 0"
+      scale="0.01 0.01 0.01"
+      animation-mixer="clip:mixamo.com; timeScale:1; loop:pingpong; crossFadeDuration:0"
+    >
+    </a-entity>
+
+    <a-entity
+      id="roundhouse"
+      gltf-model="#kick"
+      position="2 0 -2"
+      rotation="0 0 0"
+      scale="0.01 0.01 0.01"
+      animation-mixer="clip:mixamo.com; timeScale:1; loop:pingpong; crossFadeDuration:0"
+    >
+    </a-entity>
+
+    <a-circle
+      position="2 -0.05 -2"
+      rotation="-90 0 0"
+      radius="0.4"
+      material="color: black;"
+    ></a-circle>
+
+    <a-image
+      id="image-1"
+      position="0 0 0"
+      rotation="0 0 0"
+      scale="1 1 1"
+      geometry="width: 4; height: 3;"
+      material="color: #ffffff; opacity: 1; shader: flat; side: double; src: #uiimage; metalness: 0.5; roughness: 1; repeat: 1 1;"
+      shadow="cast: true; receive: true;"
+      visible="true"
+    ></a-image>
+  </a-scene>
 </html>
